@@ -1,0 +1,7 @@
+-- Optional: allow authenticated dashboard users to read data (not for service writes).
+-- Run only if your frontend uses the Supabase anon key with logged-in users.
+
+-- create policy "read stock_list" on public.stock_list for select to authenticated using (true);
+-- create policy "read stock_prices" on public.stock_prices for select to authenticated using (true);
+-- create policy "read news" on public.news for select to authenticated using (true);
+-- create policy "read announcements" on public.announcements for select to authenticated using (true);
