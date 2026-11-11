@@ -1,0 +1,802 @@
+[
+  {
+    "stock_id": "N100_ABB",
+    "symbol": "ABB",
+    "yfinance_symbol": "ABB.NS",
+    "company_name": "ABB India Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_ADANIENSOL",
+    "symbol": "ADANIENSOL",
+    "yfinance_symbol": "ADANIENSOL.NS",
+    "company_name": "Adani Energy Solutions Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_ADANIENT",
+    "symbol": "ADANIENT",
+    "yfinance_symbol": "ADANIENT.NS",
+    "company_name": "Adani Enterprises Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_ADANIGREEN",
+    "symbol": "ADANIGREEN",
+    "yfinance_symbol": "ADANIGREEN.NS",
+    "company_name": "Adani Green Energy Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_ADANIPORTS",
+    "symbol": "ADANIPORTS",
+    "yfinance_symbol": "ADANIPORTS.NS",
+    "company_name": "Adani Ports and Special Economic Zone Ltd.",
+    "exchange": "NSE",
+    "sector": "Services"
+  },
+  {
+    "stock_id": "N100_ADANIPOWER",
+    "symbol": "ADANIPOWER",
+    "yfinance_symbol": "ADANIPOWER.NS",
+    "company_name": "Adani Power Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_AMBUJACEM",
+    "symbol": "AMBUJACEM",
+    "yfinance_symbol": "AMBUJACEM.NS",
+    "company_name": "Ambuja Cements Ltd.",
+    "exchange": "NSE",
+    "sector": "Construction Materials"
+  },
+  {
+    "stock_id": "N100_APOLLOHOSP",
+    "symbol": "APOLLOHOSP",
+    "yfinance_symbol": "APOLLOHOSP.NS",
+    "company_name": "Apollo Hospitals Enterprise Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_ASIANPAINT",
+    "symbol": "ASIANPAINT",
+    "yfinance_symbol": "ASIANPAINT.NS",
+    "company_name": "Asian Paints Ltd.",
+    "exchange": "NSE",
+    "sector": "Consumer Durables"
+  },
+  {
+    "stock_id": "N100_DMART",
+    "symbol": "DMART",
+    "yfinance_symbol": "DMART.NS",
+    "company_name": "Avenue Supermarts Ltd.",
+    "exchange": "NSE",
+    "sector": "Consumer Services"
+  },
+  {
+    "stock_id": "N100_AXISBANK",
+    "symbol": "AXISBANK",
+    "yfinance_symbol": "AXISBANK.NS",
+    "company_name": "Axis Bank Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BSE",
+    "symbol": "BSE",
+    "yfinance_symbol": "BSE.NS",
+    "company_name": "BSE Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BAJAJ-AUTO",
+    "symbol": "BAJAJ-AUTO",
+    "yfinance_symbol": "BAJAJ-AUTO.NS",
+    "company_name": "Bajaj Auto Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_BAJFINANCE",
+    "symbol": "BAJFINANCE",
+    "yfinance_symbol": "BAJFINANCE.NS",
+    "company_name": "Bajaj Finance Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BAJAJFINSV",
+    "symbol": "BAJAJFINSV",
+    "yfinance_symbol": "BAJAJFINSV.NS",
+    "company_name": "Bajaj Finserv Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BAJAJHLDNG",
+    "symbol": "BAJAJHLDNG",
+    "yfinance_symbol": "BAJAJHLDNG.NS",
+    "company_name": "Bajaj Holdings & Investment Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BANKBARODA",
+    "symbol": "BANKBARODA",
+    "yfinance_symbol": "BANKBARODA.NS",
+    "company_name": "Bank of Baroda",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_BEL",
+    "symbol": "BEL",
+    "yfinance_symbol": "BEL.NS",
+    "company_name": "Bharat Electronics Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_BPCL",
+    "symbol": "BPCL",
+    "yfinance_symbol": "BPCL.NS",
+    "company_name": "Bharat Petroleum Corporation Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_BHARTIARTL",
+    "symbol": "BHARTIARTL",
+    "yfinance_symbol": "BHARTIARTL.NS",
+    "company_name": "Bharti Airtel Ltd.",
+    "exchange": "NSE",
+    "sector": "Telecommunication"
+  },
+  {
+    "stock_id": "N100_BOSCHLTD",
+    "symbol": "BOSCHLTD",
+    "yfinance_symbol": "BOSCHLTD.NS",
+    "company_name": "Bosch Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_BRITANNIA",
+    "symbol": "BRITANNIA",
+    "yfinance_symbol": "BRITANNIA.NS",
+    "company_name": "Britannia Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_CGPOWER",
+    "symbol": "CGPOWER",
+    "yfinance_symbol": "CGPOWER.NS",
+    "company_name": "CG Power and Industrial Solutions Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_CANBK",
+    "symbol": "CANBK",
+    "yfinance_symbol": "CANBK.NS",
+    "company_name": "Canara Bank",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_CHOLAFIN",
+    "symbol": "CHOLAFIN",
+    "yfinance_symbol": "CHOLAFIN.NS",
+    "company_name": "Cholamandalam Investment and Finance Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_CIPLA",
+    "symbol": "CIPLA",
+    "yfinance_symbol": "CIPLA.NS",
+    "company_name": "Cipla Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_COALINDIA",
+    "symbol": "COALINDIA",
+    "yfinance_symbol": "COALINDIA.NS",
+    "company_name": "Coal India Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_CUMMINSIND",
+    "symbol": "CUMMINSIND",
+    "yfinance_symbol": "CUMMINSIND.NS",
+    "company_name": "Cummins India Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_DLF",
+    "symbol": "DLF",
+    "yfinance_symbol": "DLF.NS",
+    "company_name": "DLF Ltd.",
+    "exchange": "NSE",
+    "sector": "Realty"
+  },
+  {
+    "stock_id": "N100_DIVISLAB",
+    "symbol": "DIVISLAB",
+    "yfinance_symbol": "DIVISLAB.NS",
+    "company_name": "Divi's Laboratories Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_DRREDDY",
+    "symbol": "DRREDDY",
+    "yfinance_symbol": "DRREDDY.NS",
+    "company_name": "Dr. Reddy's Laboratories Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_EICHERMOT",
+    "symbol": "EICHERMOT",
+    "yfinance_symbol": "EICHERMOT.NS",
+    "company_name": "Eicher Motors Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_ETERNAL",
+    "symbol": "ETERNAL",
+    "yfinance_symbol": "ETERNAL.NS",
+    "company_name": "Eternal Ltd.",
+    "exchange": "NSE",
+    "sector": "Consumer Services"
+  },
+  {
+    "stock_id": "N100_GAIL",
+    "symbol": "GAIL",
+    "yfinance_symbol": "GAIL.NS",
+    "company_name": "GAIL (India) Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_GODREJCP",
+    "symbol": "GODREJCP",
+    "yfinance_symbol": "GODREJCP.NS",
+    "company_name": "Godrej Consumer Products Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_GRASIM",
+    "symbol": "GRASIM",
+    "yfinance_symbol": "GRASIM.NS",
+    "company_name": "Grasim Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Construction Materials"
+  },
+  {
+    "stock_id": "N100_HCLTECH",
+    "symbol": "HCLTECH",
+    "yfinance_symbol": "HCLTECH.NS",
+    "company_name": "HCL Technologies Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_HDFCAMC",
+    "symbol": "HDFCAMC",
+    "yfinance_symbol": "HDFCAMC.NS",
+    "company_name": "HDFC Asset Management Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_HDFCBANK",
+    "symbol": "HDFCBANK",
+    "yfinance_symbol": "HDFCBANK.NS",
+    "company_name": "HDFC Bank Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_HDFCLIFE",
+    "symbol": "HDFCLIFE",
+    "yfinance_symbol": "HDFCLIFE.NS",
+    "company_name": "HDFC Life Insurance Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_HINDALCO",
+    "symbol": "HINDALCO",
+    "yfinance_symbol": "HINDALCO.NS",
+    "company_name": "Hindalco Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_HAL",
+    "symbol": "HAL",
+    "yfinance_symbol": "HAL.NS",
+    "company_name": "Hindustan Aeronautics Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_HINDUNILVR",
+    "symbol": "HINDUNILVR",
+    "yfinance_symbol": "HINDUNILVR.NS",
+    "company_name": "Hindustan Unilever Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_HINDZINC",
+    "symbol": "HINDZINC",
+    "yfinance_symbol": "HINDZINC.NS",
+    "company_name": "Hindustan Zinc Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_POWERINDIA",
+    "symbol": "POWERINDIA",
+    "yfinance_symbol": "POWERINDIA.NS",
+    "company_name": "Hitachi Energy India Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_HYUNDAI",
+    "symbol": "HYUNDAI",
+    "yfinance_symbol": "HYUNDAI.NS",
+    "company_name": "Hyundai Motor India Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_ICICIBANK",
+    "symbol": "ICICIBANK",
+    "yfinance_symbol": "ICICIBANK.NS",
+    "company_name": "ICICI Bank Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_ITC",
+    "symbol": "ITC",
+    "yfinance_symbol": "ITC.NS",
+    "company_name": "ITC Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_IOC",
+    "symbol": "IOC",
+    "yfinance_symbol": "IOC.NS",
+    "company_name": "Indian Oil Corporation Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_IRFC",
+    "symbol": "IRFC",
+    "yfinance_symbol": "IRFC.NS",
+    "company_name": "Indian Railway Finance Corporation Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_INFY",
+    "symbol": "INFY",
+    "yfinance_symbol": "INFY.NS",
+    "company_name": "Infosys Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_INDIGO",
+    "symbol": "INDIGO",
+    "yfinance_symbol": "INDIGO.NS",
+    "company_name": "InterGlobe Aviation Ltd.",
+    "exchange": "NSE",
+    "sector": "Services"
+  },
+  {
+    "stock_id": "N100_JSWSTEEL",
+    "symbol": "JSWSTEEL",
+    "yfinance_symbol": "JSWSTEEL.NS",
+    "company_name": "JSW Steel Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_JINDALSTEL",
+    "symbol": "JINDALSTEL",
+    "yfinance_symbol": "JINDALSTEL.NS",
+    "company_name": "Jindal Steel Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_JIOFIN",
+    "symbol": "JIOFIN",
+    "yfinance_symbol": "JIOFIN.NS",
+    "company_name": "Jio Financial Services Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_KOTAKBANK",
+    "symbol": "KOTAKBANK",
+    "yfinance_symbol": "KOTAKBANK.NS",
+    "company_name": "Kotak Mahindra Bank Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_LTM",
+    "symbol": "LTM",
+    "yfinance_symbol": "LTM.NS",
+    "company_name": "LTM Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_LT",
+    "symbol": "LT",
+    "yfinance_symbol": "LT.NS",
+    "company_name": "Larsen & Toubro Ltd.",
+    "exchange": "NSE",
+    "sector": "Construction"
+  },
+  {
+    "stock_id": "N100_M&M",
+    "symbol": "M&M",
+    "yfinance_symbol": "M&M.NS",
+    "company_name": "Mahindra & Mahindra Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_MARUTI",
+    "symbol": "MARUTI",
+    "yfinance_symbol": "MARUTI.NS",
+    "company_name": "Maruti Suzuki India Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_MAXHEALTH",
+    "symbol": "MAXHEALTH",
+    "yfinance_symbol": "MAXHEALTH.NS",
+    "company_name": "Max Healthcare Institute Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_MAZDOCK",
+    "symbol": "MAZDOCK",
+    "yfinance_symbol": "MAZDOCK.NS",
+    "company_name": "Mazagoan Dock Shipbuilders Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_MUTHOOTFIN",
+    "symbol": "MUTHOOTFIN",
+    "yfinance_symbol": "MUTHOOTFIN.NS",
+    "company_name": "Muthoot Finance Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_NTPC",
+    "symbol": "NTPC",
+    "yfinance_symbol": "NTPC.NS",
+    "company_name": "NTPC Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_NESTLEIND",
+    "symbol": "NESTLEIND",
+    "yfinance_symbol": "NESTLEIND.NS",
+    "company_name": "Nestle India Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_ONGC",
+    "symbol": "ONGC",
+    "yfinance_symbol": "ONGC.NS",
+    "company_name": "Oil & Natural Gas Corporation Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_PIDILITIND",
+    "symbol": "PIDILITIND",
+    "yfinance_symbol": "PIDILITIND.NS",
+    "company_name": "Pidilite Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Chemicals"
+  },
+  {
+    "stock_id": "N100_POLYCAB",
+    "symbol": "POLYCAB",
+    "yfinance_symbol": "POLYCAB.NS",
+    "company_name": "Polycab India Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_PFC",
+    "symbol": "PFC",
+    "yfinance_symbol": "PFC.NS",
+    "company_name": "Power Finance Corporation Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_POWERGRID",
+    "symbol": "POWERGRID",
+    "yfinance_symbol": "POWERGRID.NS",
+    "company_name": "Power Grid Corporation of India Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_PNB",
+    "symbol": "PNB",
+    "yfinance_symbol": "PNB.NS",
+    "company_name": "Punjab National Bank",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_RELIANCE",
+    "symbol": "RELIANCE",
+    "yfinance_symbol": "RELIANCE.NS",
+    "company_name": "Reliance Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Oil Gas & Consumable Fuels"
+  },
+  {
+    "stock_id": "N100_SBILIFE",
+    "symbol": "SBILIFE",
+    "yfinance_symbol": "SBILIFE.NS",
+    "company_name": "SBI Life Insurance Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_MOTHERSON",
+    "symbol": "MOTHERSON",
+    "yfinance_symbol": "MOTHERSON.NS",
+    "company_name": "Samvardhana Motherson International Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_SHRIRAMFIN",
+    "symbol": "SHRIRAMFIN",
+    "yfinance_symbol": "SHRIRAMFIN.NS",
+    "company_name": "Shriram Finance Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_ENRIN",
+    "symbol": "ENRIN",
+    "yfinance_symbol": "ENRIN.NS",
+    "company_name": "Siemens Energy India Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_SIEMENS",
+    "symbol": "SIEMENS",
+    "yfinance_symbol": "SIEMENS.NS",
+    "company_name": "Siemens Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_SOLARINDS",
+    "symbol": "SOLARINDS",
+    "yfinance_symbol": "SOLARINDS.NS",
+    "company_name": "Solar Industries India Ltd.",
+    "exchange": "NSE",
+    "sector": "Chemicals"
+  },
+  {
+    "stock_id": "N100_SBIN",
+    "symbol": "SBIN",
+    "yfinance_symbol": "SBIN.NS",
+    "company_name": "State Bank of India",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_SUNPHARMA",
+    "symbol": "SUNPHARMA",
+    "yfinance_symbol": "SUNPHARMA.NS",
+    "company_name": "Sun Pharmaceutical Industries Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_TVSMOTOR",
+    "symbol": "TVSMOTOR",
+    "yfinance_symbol": "TVSMOTOR.NS",
+    "company_name": "TVS Motor Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_TATACAP",
+    "symbol": "TATACAP",
+    "yfinance_symbol": "TATACAP.NS",
+    "company_name": "Tata Capital Ltd.",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_TCS",
+    "symbol": "TCS",
+    "yfinance_symbol": "TCS.NS",
+    "company_name": "Tata Consultancy Services Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_TATACONSUM",
+    "symbol": "TATACONSUM",
+    "yfinance_symbol": "TATACONSUM.NS",
+    "company_name": "Tata Consumer Products Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_TMCV",
+    "symbol": "TMCV",
+    "yfinance_symbol": "TMCV.NS",
+    "company_name": "Tata Motors Ltd.",
+    "exchange": "NSE",
+    "sector": "Capital Goods"
+  },
+  {
+    "stock_id": "N100_TMPV",
+    "symbol": "TMPV",
+    "yfinance_symbol": "TMPV.NS",
+    "company_name": "Tata Motors Passenger Vehicles Ltd.",
+    "exchange": "NSE",
+    "sector": "Automobile and Auto Components"
+  },
+  {
+    "stock_id": "N100_TATAPOWER",
+    "symbol": "TATAPOWER",
+    "yfinance_symbol": "TATAPOWER.NS",
+    "company_name": "Tata Power Co. Ltd.",
+    "exchange": "NSE",
+    "sector": "Power"
+  },
+  {
+    "stock_id": "N100_TATASTEEL",
+    "symbol": "TATASTEEL",
+    "yfinance_symbol": "TATASTEEL.NS",
+    "company_name": "Tata Steel Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_TECHM",
+    "symbol": "TECHM",
+    "yfinance_symbol": "TECHM.NS",
+    "company_name": "Tech Mahindra Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_TITAN",
+    "symbol": "TITAN",
+    "yfinance_symbol": "TITAN.NS",
+    "company_name": "Titan Company Ltd.",
+    "exchange": "NSE",
+    "sector": "Consumer Durables"
+  },
+  {
+    "stock_id": "N100_TORNTPHARM",
+    "symbol": "TORNTPHARM",
+    "yfinance_symbol": "TORNTPHARM.NS",
+    "company_name": "Torrent Pharmaceuticals Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  },
+  {
+    "stock_id": "N100_TRENT",
+    "symbol": "TRENT",
+    "yfinance_symbol": "TRENT.NS",
+    "company_name": "Trent Ltd.",
+    "exchange": "NSE",
+    "sector": "Consumer Services"
+  },
+  {
+    "stock_id": "N100_ULTRACEMCO",
+    "symbol": "ULTRACEMCO",
+    "yfinance_symbol": "ULTRACEMCO.NS",
+    "company_name": "UltraTech Cement Ltd.",
+    "exchange": "NSE",
+    "sector": "Construction Materials"
+  },
+  {
+    "stock_id": "N100_UNIONBANK",
+    "symbol": "UNIONBANK",
+    "yfinance_symbol": "UNIONBANK.NS",
+    "company_name": "Union Bank of India",
+    "exchange": "NSE",
+    "sector": "Financial Services"
+  },
+  {
+    "stock_id": "N100_VBL",
+    "symbol": "VBL",
+    "yfinance_symbol": "VBL.NS",
+    "company_name": "Varun Beverages Ltd.",
+    "exchange": "NSE",
+    "sector": "Fast Moving Consumer Goods"
+  },
+  {
+    "stock_id": "N100_VAML",
+    "symbol": "VAML",
+    "yfinance_symbol": "VAML.NS",
+    "company_name": "Vedanta Aluminium Metal Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_VEDL",
+    "symbol": "VEDL",
+    "yfinance_symbol": "VEDL.NS",
+    "company_name": "Vedanta Ltd.",
+    "exchange": "NSE",
+    "sector": "Metals & Mining"
+  },
+  {
+    "stock_id": "N100_IDEA",
+    "symbol": "IDEA",
+    "yfinance_symbol": "IDEA.NS",
+    "company_name": "Vodafone Idea Ltd.",
+    "exchange": "NSE",
+    "sector": "Telecommunication"
+  },
+  {
+    "stock_id": "N100_WIPRO",
+    "symbol": "WIPRO",
+    "yfinance_symbol": "WIPRO.NS",
+    "company_name": "Wipro Ltd.",
+    "exchange": "NSE",
+    "sector": "Information Technology"
+  },
+  {
+    "stock_id": "N100_ZYDUSLIFE",
+    "symbol": "ZYDUSLIFE",
+    "yfinance_symbol": "ZYDUSLIFE.NS",
+    "company_name": "Zydus Lifesciences Ltd.",
+    "exchange": "NSE",
+    "sector": "Healthcare"
+  }
+]

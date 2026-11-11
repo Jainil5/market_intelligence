@@ -2,22 +2,16 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
-from fastapi import APIRouter, Header, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from data_manager.services.stock_catalog import create_stock, get_stock, list_stocks, update_stock
+from data_manager.deps import ApiKeyDep
+from data_manager.services.stock_catalog import create_stock, delete_stock, get_stock, list_stocks, update_stock
+from data_manager.services.stock_updater import refresh_prediction
+from data_manager.services.storage_sync import sync_all_price_csvs, upload_price_csv
+from data_manager.services.config import DATA_DIR
 
-router = APIRouter(prefix="/admin/stocks", tags=["admin"])
-
-
-def _check_api_key(x_api_key: Optional[str]) -> None:
-    import os
-
-    expected = os.getenv("API_KEY")
-    if not expected:
-        raise HTTPException(status_code=503, detail="API_KEY is not configured")
-    if x_api_key != expected:
-        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+router = APIRouter(prefix="/admin", tags=["admin"])
 
 
 class StockCreateRequest(BaseModel):
@@ -43,18 +37,13 @@ class StockUpdateRequest(BaseModel):
     active: Optional[bool] = None
 
 
-@router.get("")
-def admin_list_stocks(
-    include_inactive: bool = True,
-    x_api_key: Optional[str] = Header(default=None),
-):
-    _check_api_key(x_api_key)
+@router.get("/stocks")
+def admin_list_stocks(_: ApiKeyDep, include_inactive: bool = True):
     return {"stocks": list_stocks(active_only=False, include_inactive=include_inactive)}
 
 
-@router.post("")
-def admin_create_stock(payload: StockCreateRequest, x_api_key: Optional[str] = Header(default=None)):
-    _check_api_key(x_api_key)
+@router.post("/stocks")
+def admin_create_stock(payload: StockCreateRequest, _: ApiKeyDep):
     if get_stock(payload.stock_id):
         raise HTTPException(status_code=409, detail="stock_id already exists")
     try:
@@ -64,14 +53,34 @@ def admin_create_stock(payload: StockCreateRequest, x_api_key: Optional[str] = H
     return {"status": "created", "stock": row}
 
 
-@router.patch("/{stock_id}")
-def admin_update_stock(
-    stock_id: str,
-    payload: StockUpdateRequest,
-    x_api_key: Optional[str] = Header(default=None),
-):
-    _check_api_key(x_api_key)
+@router.patch("/stocks/{stock_id}")
+def admin_update_stock(stock_id: str, payload: StockUpdateRequest, _: ApiKeyDep):
     if not get_stock(stock_id):
         raise HTTPException(status_code=404, detail="Stock not found")
     row = update_stock(stock_id, payload.model_dump(exclude_unset=True))
     return {"status": "updated", "stock": row}
+
+
+@router.delete("/stocks/{stock_id}")
+def admin_delete_stock(stock_id: str, _: ApiKeyDep):
+    if not get_stock(stock_id):
+        raise HTTPException(status_code=404, detail="Stock not found")
+    delete_stock(stock_id)
+    return {"status": "deleted", "stock_id": stock_id}
+
+
+@router.post("/stocks/{stock_id}/sync-storage")
+def admin_sync_storage(stock_id: str, _: ApiKeyDep):
+    if not get_stock(stock_id):
+        raise HTTPException(status_code=404, detail="Stock not found")
+    return upload_price_csv(stock_id, DATA_DIR / f"{stock_id}.csv")
+
+
+@router.post("/stocks/{stock_id}/refresh-prediction")
+def admin_refresh_prediction(stock_id: str, _: ApiKeyDep):
+    return refresh_prediction(stock_id)
+
+
+@router.post("/storage/sync-all")
+def admin_sync_all_storage(_: ApiKeyDep):
+    return sync_all_price_csvs()

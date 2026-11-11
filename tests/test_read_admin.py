@@ -5,7 +5,8 @@ from fastapi.testclient import TestClient
 import main
 
 
-def test_list_stocks_read_api():
+def test_list_stocks_read_api(monkeypatch):
+    monkeypatch.setenv("DEMO_MARKET_DATA", "supabase")
     fake = [{"stock_id": "STK001", "symbol": "RELIANCE", "active": True}]
     with patch("data_manager.routes.read.list_stocks", return_value=fake):
         client = TestClient(main.app)
@@ -32,3 +33,11 @@ def test_admin_create_stock():
         )
     assert response.status_code == 200
     assert response.json()["status"] == "created"
+
+
+def test_market_overview_route():
+    with patch("data_manager.routes.read.build_market_overview", return_value=[{"stock_id": "STK001"}]):
+        client = TestClient(main.app)
+        response = client.get("/stocks/overview/market", headers={"x-api-key": "test-secret-key"})
+    assert response.status_code == 200
+    assert response.json()["stocks"][0]["stock_id"] == "STK001"

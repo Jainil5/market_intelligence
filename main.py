@@ -2,126 +2,74 @@ from __future__ import annotations
 
 import logging
 import os
-from datetime import date
-from typing import Optional
+import time
+import uuid
 
-from fastapi import FastAPI, Header, HTTPException
-from pydantic import BaseModel, Field
 from dotenv import load_dotenv
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from data_manager.routes.admin import router as admin_router
+from data_manager.routes.auth import router as auth_router
+from data_manager.routes.dashboard import router as dashboard_router
+from data_manager.routes.jobs import router as jobs_router
+from data_manager.routes.metrics import router as metrics_router
 from data_manager.routes.read import router as read_router
-from data_manager.services.alerts import notify_job_result
-from data_manager.services.stock_updater import update_all_stocks, update_one_stock
-from data_manager.services.news_updater import update_news_for_all_stocks
-from data_manager.services.announcement_updater import update_announcements_for_all_stocks
 from data_manager.services.health import build_health_payload
 
 load_dotenv()
 logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
 logger = logging.getLogger(__name__)
-app = FastAPI(title="Market Intelligence Data API", version="1.2.0")
-app.include_router(read_router)
-app.include_router(admin_router)
+
+API_VERSION = "1.4.0"
 
 
-class UpdateRequest(BaseModel):
-    stock_id: Optional[str] = None
-    include_fundamentals: bool = True
-    include_news: bool = True
-    include_announcements: bool = True
-
-
-class PriceUpdateRequest(BaseModel):
-    stock_id: Optional[str] = None
-    include_fundamentals: bool = False
-    backfill_from: Optional[date] = Field(
-        default=None,
-        description="Fetch OHLCV from this date (inclusive). Omit for incremental updates.",
-    )
-
-
-def check_api_key(x_api_key: Optional[str]) -> None:
-    expected = os.getenv("API_KEY")
-    if not expected:
-        raise HTTPException(status_code=503, detail="API_KEY is not configured")
-    if x_api_key != expected:
-        raise HTTPException(status_code=401, detail="Invalid or missing API key")
-
-
-@app.get("/health")
-def health():
-    payload = build_health_payload()
-    payload["environment"] = os.getenv("APP_ENV", "development")
-    return payload
-
-
-@app.post("/update/stocks")
-def update_stocks(payload: UpdateRequest = UpdateRequest(), x_api_key: Optional[str] = Header(default=None)):
-    check_api_key(x_api_key)
-    if payload.stock_id:
-        result = update_one_stock(payload.stock_id, include_fundamentals=payload.include_fundamentals)
-        if payload.include_news:
-            result["news"] = update_news_for_all_stocks(stock_id=payload.stock_id)
-        if payload.include_announcements:
-            result["announcements"] = update_announcements_for_all_stocks(stock_id=payload.stock_id)
-        alert = notify_job_result("update_stocks", result)
-        result["alert"] = alert
-        return result
-
-    result = update_all_stocks(include_fundamentals=payload.include_fundamentals)
-    if payload.include_news:
-        result["news"] = update_news_for_all_stocks()
-    if payload.include_announcements:
-        result["announcements"] = update_announcements_for_all_stocks()
-    alert = notify_job_result("update_stocks", result)
-    result["alert"] = alert
-    return result
-
-
-@app.post("/update/prices")
-def update_prices(
-    payload: PriceUpdateRequest = PriceUpdateRequest(),
-    x_api_key: Optional[str] = Header(default=None),
-):
-    check_api_key(x_api_key)
-    if payload.stock_id:
-        result = update_one_stock(
-            payload.stock_id,
-            include_fundamentals=payload.include_fundamentals,
-            backfill_from=payload.backfill_from,
+class RequestLogMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        request_id = request.headers.get("x-request-id", str(uuid.uuid4()))
+        started = time.perf_counter()
+        response = await call_next(request)
+        duration_ms = int((time.perf_counter() - started) * 1000)
+        response.headers["x-request-id"] = request_id
+        logger.info(
+            "%s %s %s %sms",
+            request.method,
+            request.url.path,
+            response.status_code,
+            duration_ms,
         )
-    else:
-        result = update_all_stocks(
-            include_fundamentals=payload.include_fundamentals,
-            backfill_from=payload.backfill_from,
+        return response
+
+
+def create_app() -> FastAPI:
+    app = FastAPI(title="Market Intelligence Data API", version=API_VERSION)
+    origins = [o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip()]
+    if origins:
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=origins,
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
         )
-    result["alert"] = notify_job_result("update_prices", result)
-    return result
+    app.add_middleware(RequestLogMiddleware)
+    app.include_router(read_router)
+    app.include_router(admin_router)
+    app.include_router(auth_router)
+    app.include_router(jobs_router)
+    app.include_router(metrics_router)
+    app.include_router(dashboard_router)
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+
+    @app.get("/health")
+    def health():
+        payload = build_health_payload(version=API_VERSION)
+        payload["environment"] = os.getenv("APP_ENV", "development")
+        return payload
+
+    return app
 
 
-@app.post("/backfill/prices")
-def backfill_prices(
-    payload: PriceUpdateRequest,
-    x_api_key: Optional[str] = Header(default=None),
-):
-    check_api_key(x_api_key)
-    if payload.backfill_from is None:
-        raise HTTPException(status_code=422, detail="backfill_from is required for backfill")
-    return update_prices(payload=payload, x_api_key=x_api_key)
-
-
-@app.post("/update/news")
-def update_news(stock_id: Optional[str] = None, x_api_key: Optional[str] = Header(default=None)):
-    check_api_key(x_api_key)
-    result = update_news_for_all_stocks(stock_id=stock_id)
-    result["alert"] = notify_job_result("update_news", result)
-    return result
-
-
-@app.post("/update/announcements")
-def update_announcements(stock_id: Optional[str] = None, x_api_key: Optional[str] = Header(default=None)):
-    check_api_key(x_api_key)
-    result = update_announcements_for_all_stocks(stock_id=stock_id)
-    result["alert"] = notify_job_result("update_announcements", result)
-    return result
+app = create_app()

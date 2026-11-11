@@ -7,3 +7,5 @@ venv/
 .DS_Store
 data_manager/data/historical_prices/*.csv
 !data_manager/data/historical_prices/.gitkeep
+node_modules/
+clients/typescript/dist/

@@ -7,3 +7,4 @@ feedparser>=6.0.11
 python-dotenv>=1.0
 pydantic>=2.8
 requests>=2.32
+jinja2>=3.1

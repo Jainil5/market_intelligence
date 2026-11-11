@@ -33,3 +33,19 @@ def upload_price_csv(stock_id: str, csv_path: Path | None = None) -> dict:
         file_options={"content-type": "text/csv", "upsert": "true"},
     )
     return {"uploaded": True, "bucket": bucket, "path": object_path, "bytes": len(data)}
+
+
+def sync_all_price_csvs() -> dict:
+    if not _enabled():
+        return {"uploaded": 0, "reason": "SUPABASE_STORAGE_BUCKET not set"}
+    uploaded = 0
+    errors: list[dict] = []
+    for path in sorted(DATA_DIR.glob("*.csv")):
+        stock_id = path.stem
+        try:
+            result = upload_price_csv(stock_id, path)
+            if result.get("uploaded"):
+                uploaded += 1
+        except Exception as exc:
+            errors.append({"stock_id": stock_id, "error": str(exc)})
+    return {"uploaded": uploaded, "errors": errors}

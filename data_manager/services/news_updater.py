@@ -8,6 +8,7 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 from .supabase_client import get_supabase
 from .google_news_fetcher import fetch_google_news
+from .sentiment import score_headline
 
 logger = logging.getLogger(__name__)
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -29,13 +30,28 @@ def _normalise_date(value):
     try: return parsedate_to_datetime(value).astimezone(timezone.utc).isoformat()
     except Exception: return datetime.now(timezone.utc).isoformat()
 
+def _sentiment_enabled() -> bool:
+    return os.getenv("NEWS_SENTIMENT_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
+
+
 def _insert_news(stock: dict, articles: list[dict]) -> int:
     rows=[]
     for article in articles:
         url = article.get("source_url") or article.get("url")
         headline = article.get("headline") or article.get("title")
         if not url or not headline: continue
-        rows.append({"stock_id": stock["stock_id"], "headline": headline, "content": article.get("content") or article.get("summary"), "source": article.get("source") or "Unknown", "source_url": url, "published_at": _normalise_date(article.get("published_at") or article.get("published"))})
+        sentiment = article.get("sentiment")
+        if sentiment is None and _sentiment_enabled():
+            sentiment = score_headline(headline)
+        rows.append({
+            "stock_id": stock["stock_id"],
+            "headline": headline,
+            "content": article.get("content") or article.get("summary"),
+            "source": article.get("source") or "Unknown",
+            "source_url": url,
+            "published_at": _normalise_date(article.get("published_at") or article.get("published")),
+            "sentiment": sentiment,
+        })
     if not rows: return 0
     # source_url is unique per stock; duplicates from repeated RSS runs are ignored.
     get_supabase().table("news").upsert(rows, on_conflict="stock_id,source_url", ignore_duplicates=True).execute()

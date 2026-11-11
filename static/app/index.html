@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Market Intelligence App</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+  <link rel="stylesheet" href="/static/app/app.css" />
+  <script src="https://s3.tradingview.com/tv.js" defer></script>
+  <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js" defer></script>
+</head>
+<body>
+  <div id="login_view" class="login-view">
+    <form id="login_form" class="login-card">
+      <h1>Market Intelligence</h1>
+      <p>Enter your API key to open the chart terminal backed by your live data API.</p>
+      <label for="api_key">API key</label>
+      <input id="api_key" name="api_key" type="password" autocomplete="current-password" required />
+      <button type="submit">Open terminal</button>
+      <p class="hint">Same value as <code>API_KEY</code> in your backend <code>.env</code>.</p>
+      <p id="login_health" class="login-health">Checking server…</p>
+    </form>
+  </div>
+
+  <div id="app_view" class="hidden">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">MI</span> Market Intelligence</div>
+        <div class="search-wrap">
+          <input id="watch_search" type="search" placeholder="Search symbol or company…" autocomplete="off" />
+        </div>
+        <div class="topbar-meta">
+          <span id="health_pill" class="health-pill ok">Loading…</span>
+          <span id="env_badge" class="badge">app</span>
+          <span>TradingView charts</span>
+          <button type="button" id="ops_toggle" class="link-btn">Ops</button>
+          <button type="button" id="logout_btn" class="link-btn">Sign out</button>
+        </div>
+      </header>
+      <div class="main-grid">
+        <aside class="panel watch">
+          <div class="panel-head">Watchlist</div>
+          <div id="metrics_strip" class="metrics-strip"></div>
+          <div class="screener-bar">
+            <select id="filter_signal" aria-label="Signal filter">
+              <option value="all">All signals</option>
+              <option value="bullish">Bullish</option>
+              <option value="bearish">Bearish</option>
+              <option value="neutral">Neutral</option>
+            </select>
+            <select id="filter_sector" aria-label="Sector filter">
+              <option value="all">All sectors</option>
+            </select>
+            <label><input type="checkbox" id="filter_stale" /> Stale prices only</label>
+            <input type="number" id="filter_min_change" min="0" step="0.1" placeholder="|Day %| min" />
+          </div>
+          <div id="watchlist" class="watchlist"></div>
+        </aside>
+        <section class="chart-column">
+          <div class="symbol-bar">
+            <h2 id="bar_symbol">—</h2>
+            <span class="sub" id="bar_company"></span>
+            <span class="sub" id="bar_tv"></span>
+            <span class="price-lg" id="bar_price">—</span>
+            <span id="bar_change"></span>
+            <span id="bar_freshness" class="sub"></span>
+          </div>
+          <div class="chart-tabs">
+            <button type="button" class="chart-tab active" data-tab="local">Recent OHLCV</button>
+            <button type="button" class="chart-tab" data-tab="tradingview">TradingView</button>
+          </div>
+          <div class="chart-pane active" data-pane="local">
+            <div id="local_chart"></div>
+            <div class="chart-footnote">Daily candles from ingested price history</div>
+          </div>
+          <div class="chart-pane" data-pane="tradingview">
+            <div id="tv_chart_wrap" class="tv-chart-wrap">
+              <div id="tv_chart_inner"></div>
+            </div>
+          <div class="chart-footnote">Chart data © TradingView · <span id="tv_symbol_label">—</span></div>
+        </div>
+        </section>
+        <aside class="panel intel">
+          <div class="panel-head">Intelligence</div>
+          <div class="intel-block">
+            <div>Model signal</div>
+            <span id="intel_signal" class="signal-pill hold">—</span>
+            <p id="intel_signal_explain" class="signal-explain"></p>
+            <dl id="intel_prediction" class="kv-grid"></dl>
+          </div>
+          <div class="intel-block">
+            <div class="panel-head" style="padding:0;border:0;margin-bottom:0.5rem;">Timeline</div>
+            <ul id="intel_timeline" class="feed-list"></ul>
+          </div>
+          <div class="intel-block">
+            <div class="panel-head" style="padding:0;border:0;margin-bottom:0.5rem;">Headlines</div>
+            <ul id="intel_news" class="feed-list"></ul>
+          </div>
+          <div class="intel-block">
+            <div class="panel-head" style="padding:0;border:0;margin-bottom:0.5rem;">Announcements</div>
+            <ul id="intel_announcements" class="feed-list"></ul>
+          </div>
+        </aside>
+      </div>
+      <aside id="ops_panel" class="ops-panel hidden">
+        <div class="panel-head">Operations</div>
+        <div class="ops-body">
+          <p id="ops_health" class="ops-status"></p>
+          <button type="button" id="run_update_btn" class="ops-btn">Run full update</button>
+          <button type="button" id="refresh_data_btn" class="ops-btn secondary">Refresh watchlist</button>
+          <p id="ops_status" class="ops-status"></p>
+          <h3>Recent jobs</h3>
+          <ul id="jobs_list" class="feed-list"></ul>
+          <h3>Add stock</h3>
+          <form id="add_stock_form" class="ops-form">
+            <input name="stock_id" placeholder="STK004" required />
+            <input name="symbol" placeholder="Symbol" required />
+            <input name="yfinance_symbol" placeholder="SYMBOL.NS" required />
+            <input name="company_name" placeholder="Company name" />
+            <button type="submit">Create</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="/static/js/terminal-common.js"></script>
+  <script type="module" src="/static/app/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+[
+  {
+    "stock_id": "DEMO_RELIANCE",
+    "symbol": "RELIANCE",
+    "yfinance_symbol": "RELIANCE.NS",
+    "company_name": "Reliance Industries",
+    "exchange": "NSE",
+    "sector": "Energy"
+  },
+  {
+    "stock_id": "DEMO_TCS",
+    "symbol": "TCS",
+    "yfinance_symbol": "TCS.NS",
+    "company_name": "Tata Consultancy Services",
+    "exchange": "NSE",
+    "sector": "Technology"
+  },
+  {
+    "stock_id": "DEMO_INFY",
+    "symbol": "INFY",
+    "yfinance_symbol": "INFY.NS",
+    "company_name": "Infosys",
+    "exchange": "NSE",
+    "sector": "Technology"
+  },
+  {
+    "stock_id": "DEMO_HDFCBANK",
+    "symbol": "HDFCBANK",
+    "yfinance_symbol": "HDFCBANK.NS",
+    "company_name": "HDFC Bank",
+    "exchange": "NSE",
+    "sector": "Financials"
+  },
+  {
+    "stock_id": "DEMO_ICICIBANK",
+    "symbol": "ICICIBANK",
+    "yfinance_symbol": "ICICIBANK.NS",
+    "company_name": "ICICI Bank",
+    "exchange": "NSE",
+    "sector": "Financials"
+  },
+  {
+    "stock_id": "DEMO_ITC",
+    "symbol": "ITC",
+    "yfinance_symbol": "ITC.NS",
+    "company_name": "ITC",
+    "exchange": "NSE",
+    "sector": "Consumer"
+  },
+  {
+    "stock_id": "DEMO_BHARTIARTL",
+    "symbol": "BHARTIARTL",
+    "yfinance_symbol": "BHARTIARTL.NS",
+    "company_name": "Bharti Airtel",
+    "exchange": "NSE",
+    "sector": "Telecom"
+  },
+  {
+    "stock_id": "DEMO_SBIN",
+    "symbol": "SBIN",
+    "yfinance_symbol": "SBIN.NS",
+    "company_name": "State Bank of India",
+    "exchange": "NSE",
+    "sector": "Financials"
+  }
+]

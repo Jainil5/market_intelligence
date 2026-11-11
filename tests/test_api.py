@@ -14,6 +14,7 @@ def test_health_without_supabase():
     body = response.json()
     assert body["status"] == "degraded"
     assert body["checks"]["api_key_configured"] is True
+    assert body["version"] == "1.4.0"
 
 
 def test_update_prices_requires_api_key():
@@ -42,7 +43,12 @@ def test_update_prices_with_backfill():
         "fundamentals_updated": False,
         "prediction_updated": False,
     }
-    with patch("main.update_one_stock", return_value=fake_result) as mock_update:
+    with patch("data_manager.routes.jobs.using_demo_market", return_value=False), patch(
+        "data_manager.routes.jobs.update_one_stock", return_value=fake_result
+    ) as mock_update, patch(
+        "data_manager.routes.jobs._attach_job",
+        side_effect=lambda _name, result: result,
+    ):
         client = TestClient(main.app)
         response = client.post(
             "/update/prices",

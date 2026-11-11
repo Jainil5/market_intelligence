@@ -107,3 +107,30 @@ def update_all_stocks(
             )
         )
     return {"total": len(results), "updated": sum(x["status"] == "updated" for x in results), "failed": sum(x["status"] == "error" for x in results), "results": results}
+
+
+def refresh_prediction(stock_id: str) -> dict:
+    stocks = _get_stocks(stock_id)
+    if not stocks:
+        return {"stock_id": stock_id, "status": "not_found"}
+    stock = stocks[0]
+    rows = (
+        get_supabase()
+        .table("stock_prices")
+        .select("trade_date,open,high,low,close,volume,adj_close")
+        .eq("stock_id", stock_id)
+        .order("trade_date", desc=False)
+        .limit(250)
+        .execute()
+        .data
+        or []
+    )
+    if not rows:
+        return {"stock_id": stock_id, "status": "no_price_data"}
+    prediction = _run_prediction(stock, rows)
+    return {
+        "stock_id": stock_id,
+        "status": "updated" if prediction is not None else "skipped",
+        "prediction_updated": prediction is not None,
+        "prediction": prediction,
+    }

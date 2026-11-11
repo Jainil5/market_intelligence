@@ -14,6 +14,39 @@ make smoke              # health + list stocks + sample price update (API must b
 
 Railway: connect repo, set env vars from `.env.example`, deploy (`railway.toml` included). Schedule `scripts/cron_update.sh` with `BASE_URL` + `API_KEY`.
 
+**No Supabase yet?** Leave placeholder DB env vars and set `DEMO_MARKET_DATA=auto` (default). The `/app` terminal loads the **Nifty 100** watchlist (`data_manager/data/nifty100_stocks.json`), charts, and OHLCV without a database.
+
+| Piece | Without Supabase |
+|--------|------------------|
+| **Watchlist / symbols** | Bundled JSON catalog (`DEMO_CATALOG=nifty100` or `demo`) |
+| **OHLCV** | **Local CSV** under `PRICE_HISTORY_DIR` (default `data_manager/data/historical_prices/{stock_id}.csv`) — fill with `make sync-csv-prices` or **Ops → Run full update** (writes CSV only in demo mode) |
+| **Live quotes** | Optional: `DEMO_PRICE_SOURCE=yfinance` or `auto` (Yahoo when no CSV yet) |
+| **News / announcements / admin CRUD** | Not available until Supabase is configured |
+
+**CSV-first local workflow:**
+
+```bash
+# 1) Placeholder Supabase in .env, DEMO_MARKET_DATA=auto, set API_KEY
+# 2) Optional: force reads from disk only
+# DEMO_PRICE_SOURCE=csv
+make sync-csv-prices          # ~100 Yahoo pulls → one CSV per stock_id
+make run
+# open /app — Recent OHLCV tab uses your CSV files
+```
+
+Set `DEMO_CATALOG=demo` for the small 8-symbol sample. Set `DEMO_PRICE_SOURCE=csv` to never call Yahoo on reads (empty symbols show no prices until CSV exists).
+
+### UI
+
+| URL | Description |
+|-----|-------------|
+| `/dashboard?access_token=API_KEY` | Trading terminal (TradingView, screener, freshness, timeline, health pill) |
+| `/app` | SPA terminal + Ops panel (cookie login, cron-friendly updates) |
+| `POST /auth/login` | HttpOnly session cookie (use instead of URL tokens) |
+| `/` | Redirects to `/app` |
+
+TypeScript client for scripts and frontends: `clients/typescript` (`npm install && npm run build`).
+
 ## Architecture
 
 ```text
@@ -80,8 +113,19 @@ Endpoints:
 | GET | `/admin/stocks` | List all stocks including inactive |
 | POST | `/admin/stocks` | Create a stock (no SQL required) |
 | PATCH | `/admin/stocks/{stock_id}` | Update symbols, `active`, `bse_scrip_code`, etc. |
+| DELETE | `/admin/stocks/{stock_id}` | Remove stock (cascades prices/news) |
+| POST | `/admin/stocks/{id}/sync-storage` | Upload one CSV to Supabase Storage |
+| POST | `/admin/stocks/{id}/refresh-prediction` | Recompute `latest_prediction` from DB prices |
+| POST | `/admin/storage/sync-all` | Upload all local CSVs to Storage |
+| GET | `/stocks/overview/market` | Latest close + day change + prediction signal |
+| GET | `/stocks/{id}/snapshot` | Combined metadata + recent prices |
+| GET | `/stocks/{id}/announcements` | Recent corporate announcements |
+| GET | `/stocks/{id}/prices/export.csv` | CSV download |
+| GET | `/metrics` | Row counts (stocks, prices, news, announcements) |
+| GET | `/jobs/recent` | Recent ingestion job audit rows |
+| GET | `/dashboard?access_token=` | Trading terminal UI: TradingView charts, watchlist, stored OHLCV, news |
 
-Write/update jobs attach an `alert` object when failures occur (Slack webhook and/or SMTP email — see `.env.example`).
+Write/update jobs attach `job` metadata (duration, status) and `alert` when failures occur. News headlines get optional rule-based `sentiment`. API routes use constant-time API key checks and per-minute rate limits.
 
 ```bash
 curl -X POST http://localhost:8000/update/stocks \
